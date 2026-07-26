@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex 安装全指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f5f3ff', 100: '#ede9fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' },
+                        dark: { bg: '#09090b', card: '#18181b', border: '#27272a' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'PingFang SC', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .inset-shadow { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
+        .dark .inset-shadow { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
+    </style>
+</head>
+<body x-data="{ darkMode: true, activeTab: 'cmd' }" 
+      :class="darkMode ? 'dark bg-dark-bg text-zinc-100' : 'bg-slate-50 text-zinc-900'"
+      class="antialiased transition-colors duration-300">
+
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-zinc-200/50 dark:border-zinc-800/50 py-3">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="font-bold text-lg tracking-tight italic">Codex <span class="text-brand-500 font-sans">Guide</span></span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-500">
+                <a href="#env" class="hover:text-brand-500 transition-colors">环境准备</a>
+                <a href="#install" class="hover:text-brand-500 transition-colors">安装指南</a>
+                <a href="#login" class="hover:text-brand-500 transition-colors font-bold">登录配置</a>
+                <a href="#tools" class="hover:text-brand-500 transition-colors">辅助工具</a>
+            </div>
+
+            <button @click="darkMode = !darkMode" class="p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <svg x-show="darkMode" class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-6 max-w-5xl mx-auto">
+        
+        <!-- 1. 环境准备 -->
+        <section id="env" class="mb-16" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 01</span>
+                <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">环境准备</h2>
+                <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                    <h3 class="font-bold text-orange-500 mb-2 flex items-center gap-2 italic">科学上网（魔法）</h3>
+                    <p class="text-sm text-zinc-500 mb-6 font-medium">日常打开魔法软件，开启「系统代理」即可。</p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://haha-1366927206.cos.accelerate.myqcloud.com/tutorial/windows/clashverge/Clash.Verge_2.5.0-rc_x64-setup.exe" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-lg hover:bg-brand-700 transition-colors">下载客户端</a>
+                        <a href="https://cokecloud.net/#/register?code=L2FOV7Yb" target="_blank" class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 text-xs font-bold rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">流量购买</a>
+                    </div>
+                </div>
+                <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                    <h3 class="font-bold text-emerald-500 mb-2 flex items-center gap-2 italic text-sm">Node.js & Git</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 rounded-lg p-2.5 border border-zinc-200 dark:border-zinc-800 inset-shadow">
+                            <code class="text-xs font-mono text-brand-500">winget install OpenJS.NodeJS.LTS</code>
+                            <button onclick="copyText('winget install OpenJS.NodeJS.LTS', this)" class="text-zinc-400 hover:text-brand-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                        <div class="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 rounded-lg p-2.5 border border-zinc-200 dark:border-zinc-800 inset-shadow">
+                            <code class="text-xs font-mono text-brand-500">winget install Git.Git</code>
+                            <button onclick="copyText('winget install Git.Git', this)" class="text-zinc-400 hover:text-brand-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 安装 Codex -->
+        <section id="install" class="mb-16" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 02</span>
+                <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">安装 Codex</h2>
+                <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+            </div>
+            <div class="bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
+                <div class="flex border-b border-zinc-200 dark:border-zinc-800">
+                    <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">命令一键安装</button>
+                    <button @click="activeTab = 'offline'" :class="activeTab === 'offline' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">离线包下载</button>
+                </div>
+                <div class="p-8 italic">
+                    <div x-show="activeTab === 'cmd'" class="space-y-4">
+                        <div class="bg-zinc-950 rounded-xl p-5 relative group border border-zinc-800 inset-shadow">
+                            <code class="text-sm font-mono text-zinc-300">winget install Codex -s msstore --accept-source-agreements</code>
+                            <button onclick="copyText('winget install Codex -s msstore --accept-source-agreements', this)" class="absolute right-4 top-4 p-2 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white opacity-0 group-hover:opacity-100 transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                    </div>
+                    <div x-show="activeTab === 'offline'" class="space-y-6" x-cloak>
+                        <a href="https://github.com/Wangnov/codex-app-mirror/releases/latest" target="_blank" class="inline-block px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl font-bold text-sm shadow-lg">前往 GitHub 镜像下载最新版本 →</a>
+                        <div class="pt-6 border-t border-zinc-100 dark:border-zinc-800 text-sm">
+                            <p class="text-emerald-500 font-bold mb-2 tracking-tight underline">微软商店地址 (解析用)：</p>
+                            <div class="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-2 flex items-center justify-between mb-4">
+                                <code class="px-4 text-xs font-mono truncate max-w-xs md:max-w-md">https://apps.microsoft.com/detail/9plm9xgg6vks?hl=zh-CN&gl=CN</code>
+                                <button onclick="copyText('https://apps.microsoft.com/detail/9plm9xgg6vks?hl=zh-CN&gl=CN', this)" class="px-6 py-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-xs font-bold hover:text-brand-500 transition-all">复制</button>
+                            </div>
+                            <p class="text-zinc-500 text-xs italic">解析工具：<a href="https://store.rg-adguard.net/" target="_blank" class="text-emerald-500 font-bold hover:underline">store.rg-adguard.net</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 登录与指令 -->
+        <section id="login" class="mb-16" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 03</span>
+                <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">登录与指令配置</h2>
+                <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
+                    <h3 class="font-bold mb-4 italic text-sm tracking-widest">ChatGPT Login</h3>
+                    <div class="space-y-3">
+                        <a href="https://chatgpt.com/" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">注册Chatgpt：点此前往→</a>
+                        <a href="https://redeem.nnai.uk/sm" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">Codex 接码兑换 →</a>
+                    </div>
+                </div>
+                <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
+                    <h3 class="font-bold mb-3 italic text-sm tracking-widest">API Forward</h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <a href="https://github.com/BenedictKing/ccx/releases/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CCX</a>
+                        <a href="https://github.com/lidge-jun/opencodex/blob/main/readme/README.zh-CN.md" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">OpenCodex</a>
+                        <a href="https://github.com/farion1231/cc-switch/releases" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CC Switch</a>
+                    </div>
+                    <a href="https://platform.deepseek.com/top_up" target="_blank" class="block text-center py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg">获取 DeepSeek API Key →</a>
+                </div>
+            </div>
+
+            <!-- 配置到软件里的自定义指令 -->
+            <div x-data="{ expanded: false }" class="p-6 md:p-10 rounded-[2.5rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-2xl relative overflow-hidden group">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <h3 class="font-extrabold text-base italic tracking-tight underline decoration-brand-500/30">Codex全局自定义指令 (AAGENTS.md)</h3>
+                    </div>
+                    <button @click="copyText($refs.instructionText.innerText, $el)" class="shrink-0 flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-500 text-white rounded-xl text-xs font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-500/25">
+                        复制完整指令
+                    </button>
+                </div>
+                
+                <div class="relative bg-zinc-50 dark:bg-zinc-950/50 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800/50">
+                    <div x-ref="instructionText" 
+                         :class="expanded ? '' : 'max-h-24 overflow-hidden'" 
+                         class="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 font-mono leading-relaxed whitespace-pre-wrap transition-all duration-500 italic">
+# 全局行为准则
+
+## 语言
+
+- 使用中文回答我的问题，不要使用英文。
+
+## 文件删除安全
+
+- 禁止批量删除文件或目录。
+- 不要使用以下命令：
+  - `del /s`
+  - `rd /s`
+  - `rmdir /s`
+  - `Remove-Item -Recurse`
+  - `rm -rf`
+- 需要删除文件时，只能一次删除一个明确路径的文件。
+- 正确示例：
+
+```powershell
+Remove-Item "C:\path\to\file.txt"
+```
+
+- 如果需要批量删除文件，应停止操作，并向用户请求，让用户手动删除。
+
+## 编码前先想清楚
+
+不要假设，不要掩饰不确定性，要主动说清楚取舍。
+
+- 实现前先明确假设。
+- 如果需求有多种理解，不要静默选择，要说明可能的解释。
+- 如果存在更简单的方案，要主动提出。
+- 如果发现需求不清楚，应停下来说明困惑点，并询问用户。
+
+## 简单优先
+
+用能解决问题的最小代码，不做猜测式扩展。
+
+- 不添加用户没有要求的功能。
+- 不为一次性代码创建抽象。
+- 不加入未经要求的灵活性、配置项或扩展点。
+- 无需为不可能发生的场景写复杂错误处理。
+- 如果写了 200 行但 50 行就能解决，应主动简化。
+
+自检问题：资深工程师会不会觉得这太复杂？如果会，就简化。
+
+## 外科手术式修改
+
+只改必须改的地方，只清理自己造成的问题。
+
+- 不顺手“优化”相邻代码、注释或格式。
+- 不重构没有坏掉的代码。
+- 匹配项目既有风格，即使自己会用不同写法。
+- 发现无关的死代码时，只说明，不主动删除。
+- 如果自己的改动造成了未使用的导入、变量或函数，要清理掉。
+- 不删除改动前就已经存在的死代码，除非用户明确要求。
+
+判断标准：每一行改动都应能直接追溯到用户的请求。
+
+## 目标驱动执行
+
+把任务转成可以验证的目标，并循环直到验证完成。
+
+- “添加校验”应转成：为非法输入写测试，然后让测试通过。
+- “修复 bug”应转成：写一个能复现问题的测试，然后让测试通过。
+- “重构某模块”应转成：重构前后都确认测试通过。
+
+对于多步骤任务，先给出简短计划：
+
+```text
+1. [步骤] -> 验证：[检查方式]
+2. [步骤] -> 验证：[检查方式]
+3. [步骤] -> 验证：[检查方式]
+```
+
+好的成功标准应允许独立推进；模糊目标，例如“让它能用”，需要先澄清。
+
+## 回应态度与独立思考
+
+- 不要默认认同我的观点，也不要为了让我满意而附和我。
+- 回答前，先检查我的问题里是否存在错误前提、逻辑跳跃、信息缺失或未经证实的判断。如果有，请直接指出，不要沿着错误前提继续推导。
+- 明确区分：已确认的事实、合理推测、个人观点和暂时无法验证的信息。涉及事实、数字、人物、日期、引用和案例时，尽可能核对来源；无法确认就直接说明，不要编造。
+- 当你不同意我的判断时，请清楚说明原因，并给出反例、风险或更合理的解释。不要只给结论，要说明推理过程。
+- 语气可以直接，但不要刻意尖刻、说教或卖弄。比起让我感觉良好，更重要的是帮助我发现自己忽略的问题。
+</div>
+<!-- 渐变蒙层 -->
+<div x-show="!expanded" class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-zinc-50 dark:from-zinc-950/80 to-transparent pointer-events-none rounded-b-2xl"></div>
+</div><button @click="expanded = !expanded" class="mt-6 mx-auto flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400 hover:text-brand-500 transition-all">
+                <span x-text="expanded ? '折叠内容' : '查看完整指令内容'"></span>
+                <svg :class="expanded ? 'rotate-180' : ''" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- 4. 辅助工具 -->
+    <section id="tools" class="mb-16" data-aos="fade-up">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 04</span>
+            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">辅助工具生态</h2>
+            <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="https://github.akams.cn/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">GitHub 加速</h4>
+                <p class="text-[10px] text-zinc-400">稳定解决海外下载问题</p>
+            </a>
+            <a href="https://www.codebuddy.cn/events/invite?inviteCode=uhc35nnbtssnk" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">WorkBuddy</h4>
+                <p class="text-[10px] text-zinc-400">国产Agent软件</p>
+            </a>
+            <a href="https://github.com/xqnode/codex-zh-CN" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">Codex汉化工具</h4>
+                <p class="text-[10px] text-zinc-400">界面补丁汉化包说明</p>
+            </a>
+            <a href="https://key.dqtx.cc" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">密钥生成</h4>
+                <p class="text-[10px] text-zinc-400">安全访问秘匙一键生成</p>
+            </a>
+            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iNZOo320ywyb" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">Win11 菜单</h4>
+                <p class="text-[10px] text-zinc-400">win11右键菜单优化</p>
+            </a>
+            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iLHZK371f3kf" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">HiBit 卸载</h4>
+                <p class="text-[10px] text-zinc-400">HiBit无残留卸载</p>
+            </a>
+            <a href="https://account.apple.com/account" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">苹果账号</h4>
+                <p class="text-[10px] text-zinc-400">Apple ID注册地址</p>
+            </a>
+            <a href="https://www.meiguodizhi.com/usa-address/montana" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">美国地址</h4>
+                <p class="text-[10px] text-zinc-400">蒙大拿州免税(订阅≤20🔪)</p>
+            </a>
+            <a href="https://www.internetdownloadmanager.com/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">IDM 下载工具</h4>
+                <p class="text-[10px] text-zinc-400">IDM下载工具</p>
+            </a>
+            <a href="https://mirror2.internetdownloadmanager.com/download/idman643build7.exe" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">IDM 鸡活工具</h4>
+                <p class="text-[10px] text-zinc-400">IDM鸡活工具</p>
+            </a>
+            <a href="https://adguard.com/zh_cn/adguard-windows/overview.html" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">AdGuard插件</h4>
+                <p class="text-[10px] text-zinc-400">AdGuard插件</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/shoteasy-light-and-easy-t/nmppkehciohcgcehlnifgeokgioidknh" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">ShotEasy截图</h4>
+                <p class="text-[10px] text-zinc-400">ShotEasy截图插件</p>
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- 页脚 -->
+<footer class="border-t border-zinc-200 dark:border-zinc-800 py-16 px-6">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+        <!-- 左侧 -->
+        <div class="text-center md:text-left">
+            <p class="text-xl font-extrabold italic tracking-tight">大强同学 <span class="text-brand-500">© 2026</span></p>
+            <p class="text-[10px] text-zinc-500 mt-2 uppercase tracking-[0.2em] font-mono">Copyright All Rights Reserved.</p>
+        </div>
+        
+        <!-- 右侧图标 (纯 SVG 官方 Logo) -->
+        <div class="flex gap-6 items-center">
+            <!-- GitHub 官方 Logo -->
+            <a href="https://github.com/dqtx760" target="_blank" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all transform hover:scale-110">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <!-- X (Twitter) 官方新版 Logo -->
+            <a href="https://x.com/dqtx760" target="_blank" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all transform hover:scale-110">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    AOS.init({ duration: 800, once: true });
+
+    function copyText(text, btn) {
+        navigator.clipboard.writeText(text).then(() => {
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '已复制 ✓';
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+            }, 2000);
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
