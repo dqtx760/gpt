@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -54,6 +54,8 @@
                 <a href="#env" class="hover:text-brand-500 transition-colors">环境准备</a>
                 <a href="#install" class="hover:text-brand-500 transition-colors">安装指南</a>
                 <a href="#login" class="hover:text-brand-500 transition-colors font-bold">登录配置</a>
+                <a href="#fixes" class="hover:text-brand-500 transition-colors">报错修复</a>
+                <a href="#learning" class="hover:text-brand-500 transition-colors">学习指南</a>
                 <a href="#tools" class="hover:text-brand-500 transition-colors">辅助工具</a>
             </div>
 
@@ -64,7 +66,7 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-20 px-6 max-w-5xl mx-auto">
+    <main class="pt-24 pb-4 px-6 max-w-5xl mx-auto">
         
         <!-- 1. 环境准备 -->
         <section id="env" class="mb-16" data-aos="fade-up">
@@ -146,7 +148,7 @@
                     <h3 class="font-bold mb-4 italic text-sm tracking-widest">ChatGPT Login</h3>
                     <div class="space-y-3">
                         <a href="https://chatgpt.com/" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">注册Chatgpt：点此前往→</a>
-                        <a href="https://redeem.nnai.uk/sm" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">Codex 接码兑换 →</a>
+                        <a href="https://redeem.20240125.xyz/sm" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">Codex 🐎SMS收码 →</a>
                     </div>
                 </div>
                 <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
@@ -271,10 +273,110 @@ Remove-Item "C:\path\to\file.txt"
         </div>
     </section>
 
-    <!-- 4. 辅助工具 -->
-    <section id="tools" class="mb-16" data-aos="fade-up">
+    <!-- 4. 报错修复 -->
+    <section id="fixes" class="mb-16" data-aos="fade-up">
         <div class="flex items-center gap-4 mb-8">
             <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 04</span>
+            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">Codex 场景报错修复</h2>
+            <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- 启动崩溃 -->
+            <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
+                <h3 class="font-bold mb-4 italic text-sm tracking-widest text-orange-500">1. 启动时崩溃</h3>
+                <p class="text-xs text-zinc-500 mb-6 font-medium">通常是因为网络代理软件（如 ASProxy）修改了系统的 Winsock 目录配置。</p>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-zinc-400 uppercase tracking-wider">排查命令</p>
+                        <div class="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 rounded-lg p-2.5 border border-zinc-200 dark:border-zinc-800 inset-shadow">
+                            <code class="text-xs font-mono text-brand-500">netsh winsock show catalog | findstr ASProxy</code>
+                            <button onclick="copyText('netsh winsock show catalog | findstr ASProxy', this)" class="text-zinc-400 hover:text-brand-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-zinc-400 uppercase tracking-wider">重置命令 (管理员权限)</p>
+                        <div class="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 rounded-lg p-2.5 border border-zinc-200 dark:border-zinc-800 inset-shadow">
+                            <code class="text-xs font-mono text-brand-500">netsh winsock reset</code>
+                            <button onclick="copyText('netsh winsock reset', this)" class="text-zinc-400 hover:text-brand-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                        <p class="text-[10px] text-zinc-500 mt-2 italic">*注：执行完成后通常需要重启电脑生效。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 登录失败 -->
+            <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
+                <h3 class="font-bold mb-4 italic text-sm tracking-widest text-emerald-500">2. 登录失败 (Sign-in could not be completed)</h3>
+                <p class="text-xs text-zinc-500 mb-6 font-medium">多半是因为网络或代理环境无法正常连通 OpenAI 认证接口。</p>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-zinc-400 uppercase tracking-wider">诊断连通性命令</p>
+                        <div class="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 rounded-lg p-2.5 border border-zinc-200 dark:border-zinc-800 inset-shadow">
+                            <code class="text-xs font-mono text-brand-500">curl -I https://auth.openai.com</code>
+                            <button onclick="copyText('curl -I https://auth.openai.com', this)" class="text-zinc-400 hover:text-brand-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold mb-2 text-zinc-400 uppercase tracking-wider">修复方案</p>
+                        <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iILcv3tj3web" target="_blank" class="block p-3 text-center rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50 transition-colors shadow-sm">
+                            下载配置环境变量脚本 →
+                        </a>
+                        <p class="text-[10px] text-zinc-500 mt-2 italic">如果确认为网络问题，可通过一键配置环境变量脚本来修复代理路由。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 学习指南 -->
+    <section id="learning" class="mb-16" data-aos="fade-up">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 05</span>
+            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">Codex 学习指南</h2>
+            <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <a href="https://codex.bozhouai.com/#toc" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h3 class="font-bold italic tracking-widest group-hover:text-brand-500 transition-colors">ChatGPT 橙皮书</h3>
+                </div>
+                <p class="text-xs text-zinc-500 mb-4 flex-1">全面、系统化的 ChatGPT 与 AI 提示词学习指南，助你掌握底层逻辑。</p>
+                <div class="text-[10px] font-bold text-brand-500 uppercase flex items-center gap-1">开始阅读 <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+            </a>
+            
+            <a href="https://x.com/huoshan007/status/2081307788479782919" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    </div>
+                    <h3 class="font-bold italic tracking-widest group-hover:text-brand-500 transition-colors">Codex 保姆级视频教程！</h3>
+                </div>
+                <p class="text-xs text-zinc-500 mb-4 flex-1">从零基础上手到高阶使用的实战视频讲解，轻松搞定日常操作。</p>
+                <div class="text-[10px] font-bold text-brand-500 uppercase flex items-center gap-1">观看教程 <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+            </a>
+            <a href="https://mp.weixin.qq.com/s/F3HS6BUfTDP0h3rFipoJhA" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all"></div>
+                <div class="flex items-center gap-3 mb-4 relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h3 class="font-bold italic tracking-widest group-hover:text-brand-500 transition-colors">Codex 实战手册</h3>
+                </div>
+                <p class="text-xs text-zinc-500 mb-4 flex-1 relative z-10"><span class="text-emerald-500 font-bold bg-emerald-50 dark:bg-emerald-500/10 px-1 py-0.5 rounded">大强出品，仅售128元</span><br/><span class="inline-block mt-2">2小时快速上手，少走30天弯路。</span></p>
+                <div class="text-[10px] font-bold text-brand-500 uppercase flex items-center gap-1 relative z-10">查看详情 <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. 辅助工具 -->
+    <section id="tools" class="mb-4" data-aos="fade-up">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 06</span>
             <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">辅助工具生态</h2>
             <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
         </div>
@@ -327,13 +429,45 @@ Remove-Item "C:\path\to\file.txt"
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">ShotEasy截图</h4>
                 <p class="text-[10px] text-zinc-400">ShotEasy截图插件</p>
             </a>
+            <a href="https://checkcc.org/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">Claude 网络监测</h4>
+                <p class="text-[10px] text-zinc-400">Claude 网络环境监测</p>
+            </a>
+            <a href="https://ip.net.coffee/gpt/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">ChatGPT 网络监测</h4>
+                <p class="text-[10px] text-zinc-400">ChatGPT 网络环境监测</p>
+            </a>
+            <a href="https://www.micuapi.ai/register?aff=uTGd" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">米醋 API</h4>
+                <p class="text-[10px] text-zinc-400">米醋API中转站</p>
+            </a>
+            <a href="https://apimart.ai/register?aff=QVui" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">APIMART</h4>
+                <p class="text-[10px] text-zinc-400">APIMART中转站</p>
+            </a>
+            <a href="https://appstoreprice.org/zh/apps/6448311069" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">iOS 订阅价格</h4>
+                <p class="text-[10px] text-zinc-400">苹果App Store订阅监测</p>
+            </a>
+            <a href="https://priceradar.store/zh/app/0a4e8225-2687-46fd-8533-103e44c81b0a" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">安卓 订阅价格</h4>
+                <p class="text-[10px] text-zinc-400">Google Play订阅监测</p>
+            </a>
+            <a href="https://arena.ai/leaderboard/code/webdev" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">LLM 测评榜单</h4>
+                <p class="text-[10px] text-zinc-400">大模型投票测评榜单</p>
+            </a>
+            <a href="https://www.amz123.com/tools-hlhs" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">汇率换算</h4>
+                <p class="text-[10px] text-zinc-400">汇率换算器</p>
+            </a>
         </div>
     </section>
 </main>
 
 <!-- 页脚 -->
-<footer class="border-t border-zinc-200 dark:border-zinc-800 py-16 px-6">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+<footer class="border-t border-zinc-200 dark:border-zinc-800 py-16">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
         <!-- 左侧 -->
         <div class="text-center md:text-left">
             <p class="text-xl font-extrabold italic tracking-tight">大强同学 <span class="text-brand-500">© 2026</span></p>
@@ -367,6 +501,14 @@ Remove-Item "C:\path\to\file.txt"
         });
     }
 </script>
+
+
+
+
+
+
+
+
 
 
 
