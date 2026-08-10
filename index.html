@@ -40,6 +40,52 @@
       :class="darkMode ? 'dark bg-dark-bg text-zinc-100' : 'bg-slate-50 text-zinc-900'"
       class="antialiased transition-colors duration-300">
 
+    <!-- 访问密码拦截层 -->
+    <div id="passwordOverlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/95 backdrop-blur-md hidden">
+        <div class="w-full max-w-md p-8 rounded-3xl bg-[#111214] border border-zinc-200 dark:border-zinc-800 text-center shadow-2xl not-italic">
+            <!-- 统一顶部标题 -->
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="text-xl">🔐</span>
+                <span class="text-xl font-bold text-white tracking-wide">访问验证</span>
+            </div>
+
+            <!-- 步骤 1：密码验证主界面 -->
+            <div id="passwordStep1" class="space-y-6">
+                <p class="text-xs text-zinc-400 font-medium">请输入密码以访问</p>
+                
+                <div class="flex items-center gap-3">
+                    <input type="password" id="passwordInput" placeholder="请输入密码" class="flex-1 h-11 px-4 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-[#10b981] transition-colors">
+                    <button onclick="verifyPassword()" class="h-11 px-6 bg-[#10b981] hover:bg-[#059669] text-white text-sm font-bold rounded-xl shadow-md transition-colors shrink-0 flex items-center justify-center">验证</button>
+                </div>
+                
+                <div class="flex justify-center pt-2">
+                    <button onclick="switchStep(2)" class="flex items-center justify-center gap-1.5 h-11 px-6 bg-[#10b981] hover:bg-[#059669] text-white text-xs font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <span>👉</span> 点此获取密码
+                    </button>
+                </div>
+            </div>
+
+            <!-- 步骤 2：二维码与说明界面 -->
+            <div id="passwordStep2" class="space-y-5 hidden">
+                <div class="flex justify-center py-2">
+                    <img src="https://gitee.com/da-qiang-classmate/typora/raw/master/image/631b2f126cd24e7588d8fb3ac8137c28.webp" alt="客服微信二维码" class="w-56 h-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-md">
+                </div>
+                
+                <div class="text-xs text-zinc-400 text-center space-y-2.5 leading-relaxed font-medium">
+                    <p>1. 扫描上方二维码，关注公众号</p>
+                    <p>2. 回复关键词 <span class="text-[#10b981] font-extrabold px-0.5">密码</span></p>
+                    <p>3. 将收到的密码粘贴到下方输入框</p>
+                </div>
+                
+                <div class="flex justify-center pt-2">
+                    <button onclick="switchStep(1)" class="flex items-center gap-1.5 px-4 py-2 border border-zinc-700 hover:border-zinc-500 text-zinc-400 hover:text-zinc-200 text-xs font-bold rounded-xl transition-all">
+                        <span>←</span> 返回输入密码
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 导航栏 -->
     <nav class="fixed top-0 w-full z-50 glass-nav border-b border-zinc-200/50 dark:border-zinc-800/50 py-3">
         <div class="max-w-5xl mx-auto px-6 flex justify-between items-center">
@@ -114,14 +160,86 @@
             </div>
             <div class="bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
                 <div class="flex border-b border-zinc-200 dark:border-zinc-800">
-                    <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">命令一键安装</button>
+                    <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">一键安装</button>
+                    <button @click="activeTab = 'deploy'" :class="activeTab === 'deploy' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">一键自动部署</button>
                     <button @click="activeTab = 'offline'" :class="activeTab === 'offline' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">离线包下载</button>
                 </div>
                 <div class="p-8 italic">
                     <div x-show="activeTab === 'cmd'" class="space-y-4">
                         <div class="bg-zinc-950 rounded-xl p-5 relative group border border-zinc-800 inset-shadow">
-                            <code class="text-sm font-mono text-zinc-300">winget install Codex -s msstore --accept-source-agreements</code>
-                            <button onclick="copyText('winget install Codex -s msstore --accept-source-agreements', this)" class="absolute right-4 top-4 p-2 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white opacity-0 group-hover:opacity-100 transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                            <code class="text-sm font-mono text-zinc-300">winget install 9plm9xgg6vks</code>
+                            <button onclick="copyText('winget install 9plm9xgg6vks', this)" class="absolute right-4 top-4 p-2 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white opacity-0 group-hover:opacity-100 transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg></button>
+                        </div>
+                    </div>
+                    <div x-show="activeTab === 'deploy'" class="space-y-4.5 not-italic" x-cloak>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                            <!-- Windows x64 -->
+                            <a href="https://codexapp.agentsmirror.com/manager/latest/CodexAppManager_x64-setup.exe" class="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transform hover:-translate-y-0.5 transition-all group">
+                                <div class="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 shrink-0 group-hover:scale-105 transition-transform">
+                                    <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.101zM10.95 1.95L24 0v11.55H10.95V1.95zM10.95 12.45H24v11.55l-13.05-1.95v-9.6z"/></svg>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-extrabold text-zinc-700 dark:text-zinc-200 text-xs">Windows · x64</span>
+                                    <span class="text-[10px] text-brand-500 font-extrabold mt-0.5">一键安装器 ↓</span>
+                                </div>
+                            </a>
+                            
+                            <!-- Windows ARM64 -->
+                            <a href="https://codexapp.agentsmirror.com/manager/latest/CodexAppManager_arm64-setup.exe" class="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transform hover:-translate-y-0.5 transition-all group">
+                                <div class="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 shrink-0 group-hover:scale-105 transition-transform">
+                                    <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.101zM10.95 1.95L24 0v11.55H10.95V1.95zM10.95 12.45H24v11.55l-13.05-1.95v-9.6z"/></svg>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-extrabold text-zinc-700 dark:text-zinc-200 text-xs">Windows · ARM64</span>
+                                    <span class="text-[10px] text-brand-500 font-extrabold mt-0.5">一键安装器 ↓</span>
+                                </div>
+                            </a>
+
+                            <!-- macOS Intel -->
+                            <a href="https://codexapp.agentsmirror.com/manager/latest/CodexAppManager_x86_64.dmg" class="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transform hover:-translate-y-0.5 transition-all group">
+                                <div class="w-9 h-9 rounded-xl bg-zinc-500/10 flex items-center justify-center text-zinc-500 dark:text-zinc-400 shrink-0 group-hover:scale-105 transition-transform">
+                                    <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-.1 3.81 1.5a4.67 4.67 0 0 1 3.5 4.13c0 2.62-2.12 5.08-3.4 6.91l.69.72zm-3.26-14c.7-1 1.2-2.4 1-3.7-1.1.1-2.4.8-3.2 1.7-.7.8-1.3 2.2-1 3.5 1.2.1 2.5-.5 3.2-1.5z"/></svg>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-extrabold text-zinc-700 dark:text-zinc-200 text-xs">macOS · Intel</span>
+                                    <span class="text-[10px] text-brand-500 font-extrabold mt-0.5">安装镜像 ↓</span>
+                                </div>
+                            </a>
+
+                            <!-- macOS Apple Silicon -->
+                            <a href="https://codexapp.agentsmirror.com/manager/latest/CodexAppManager_aarch64.dmg" class="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transform hover:-translate-y-0.5 transition-all group">
+                                <div class="w-9 h-9 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 shrink-0 group-hover:scale-105 transition-transform">
+                                    <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-.1 3.81 1.5a4.67 4.67 0 0 1 3.5 4.13c0 2.62-2.12 5.08-3.4 6.91l.69.72zm-3.26-14c.7-1 1.2-2.4 1-3.7-1.1.1-2.4.8-3.2 1.7-.7.8-1.3 2.2-1 3.5 1.2.1 2.5-.5 3.2-1.5z"/></svg>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-extrabold text-zinc-700 dark:text-zinc-200 text-xs">macOS · Apple Silicon</span>
+                                    <span class="text-[10px] text-brand-500 font-extrabold mt-0.5">M系列芯片 ↓</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-5 mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/50">
+                            <!-- 左侧：软件来源说明 -->
+                            <div class="flex flex-col justify-center text-xs text-zinc-500 dark:text-zinc-400 space-y-1 leading-relaxed">
+                                <div class="flex items-center gap-1.5 font-bold text-zinc-700 dark:text-zinc-300 text-sm italic">
+                                    <span>》》》 软件来源</span>
+                                </div>
+                                <p class="mt-0.5">
+                                    <a href="https://codexapp.agentsmirror.com/" target="_blank" rel="noopener" class="text-brand-500 font-extrabold hover:underline inline-flex items-center gap-1 text-sm">
+                                        Codex App Manager
+                                        <svg class="w-3.5 h-3.5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                                    </a>
+                                </p>
+                            </div>
+
+                            <!-- 右侧：Mac 芯片查询命令 -->
+                            <div class="flex items-center justify-between gap-3 bg-zinc-50 dark:bg-zinc-950/50 rounded-xl p-3 border border-zinc-200 dark:border-zinc-800/60 max-w-md h-full">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Mac 芯片版本查询命令</span>
+                                    <code class="text-xs font-mono text-zinc-300 mt-1.5 bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800">uname -m</code>
+                                </div>
+                                <button onclick="copyText('uname -m', this)" class="shrink-0 px-3 py-1.5 bg-zinc-800 text-zinc-400 rounded-lg text-[10px] font-bold border border-zinc-700 hover:text-white hover:border-zinc-500 transition-colors">复制命令</button>
+                            </div>
                         </div>
                     </div>
                     <div x-show="activeTab === 'offline'" class="space-y-6" x-cloak>
@@ -152,20 +270,34 @@
                     <h3 class="font-bold mb-4 italic text-sm tracking-widest">ChatGPT Login</h3>
                     <div class="space-y-3">
                         <div class="flex gap-3">
-                            <a href="https://chatgpt.com/" target="_blank" class="flex-1 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50">ChatGPT官网</a>
-                            <a href="https://chat.openai.com/api/auth/session" target="_blank" class="flex-1 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50">AC Token</a>
+                            <a href="https://chatgpt.com/" target="_blank" class="flex-1 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50">登录ChatGPT</a>
+                            <a href="https://chat.openai.com/api/auth/session" target="_blank" class="flex-1 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50">获取Session</a>
                         </div>
-                        <a href="https://redeem.20240125.xyz/sm" target="_blank" class="block p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50">Codex 🐎SMS收码 →</a>
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="https://redeem.20240125.xyz/sm" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">SMS收码 →</a>
+                            <a href="https://plus.whh985.xyz/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">Plus兑换 →</a>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-150 dark:border-zinc-800/80 flex items-center justify-between gap-3 text-xs bg-zinc-50 dark:bg-zinc-950/40 rounded-xl p-3 border border-zinc-200 dark:border-zinc-800/50">
+                            <div class="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
+                                <span>💬</span>
+                                <span class="font-bold text-zinc-700 dark:text-zinc-300">ChatGPT Plus 直充：</span>
+                                <span class="font-mono text-brand-500 font-extrabold select-all">dqtx33</span>
+                            </div>
+                            <button onclick="copyText('dqtx33', this)" class="shrink-0 px-2.5 py-1 bg-zinc-800 text-zinc-400 rounded-md text-[10px] font-bold border border-zinc-700 hover:text-white hover:border-zinc-500 transition-colors">复制微信号</button>
+                        </div>
                     </div>
                 </div>
                 <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
-                    <h3 class="font-bold mb-3 italic text-sm tracking-widest">API Forward</h3>
+                    <h3 class="font-bold mb-3 italic text-sm tracking-widest">API Key</h3>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <a href="https://github.com/BenedictKing/ccx/releases/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CCX</a>
                         <a href="https://github.com/lidge-jun/opencodex/blob/main/readme/README.zh-CN.md" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">OpenCodex</a>
                         <a href="https://github.com/farion1231/cc-switch/releases" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CC Switch</a>
+                        <a href="https://github.com/BenedictKing/ccx/releases/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CCX</a>
                     </div>
-                    <a href="https://platform.deepseek.com/top_up" target="_blank" class="block text-center py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg">获取 DeepSeek API Key →</a>
+                    <div class="space-y-4">
+                        <a href="https://opencode.ai/go?ref=9AYD2ZQFJG" target="_blank" class="block text-center py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg hover:opacity-90 transition-all transform hover:-translate-y-0.5">订阅OpenCode Go →</a>
+                        <a href="https://platform.agnes-ai.com/settings/apiKeys" target="_blank" class="block text-center py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow-lg hover:opacity-90 transition-all transform hover:-translate-y-0.5">获取 Agnes API Key →</a>
+                    </div>
                 </div>
             </div>
 
@@ -326,7 +458,7 @@ Remove-Item "C:\path\to\file.txt"
     <section id="fixes" class="mb-16" data-aos="fade-up">
         <div class="flex items-center gap-4 mb-8">
             <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 04</span>
-            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">Codex 场景报错修复</h2>
+            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">报错修复</h2>
             <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
         </div>
 
@@ -368,7 +500,8 @@ Remove-Item "C:\path\to\file.txt"
                     </div>
                     <div>
                         <p class="text-[10px] font-bold mb-2 text-zinc-400 uppercase tracking-wider">修复方案</p>
-                        <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iILcv3tj3web" target="_blank" class="block p-3 text-center rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold hover:border-brand-500/50 transition-colors shadow-sm">
+                        <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iILcv3tj3web" target="_blank" class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all group">
+                            <svg class="w-4 h-4 fill-none stroke-current stroke-2 shrink-0 group-hover:animate-bounce" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l4-4m-4 4l-4-4"/></svg>
                             下载配置环境变量脚本 →
                         </a>
                         <p class="text-[10px] text-zinc-500 mt-2 italic">如果确认为网络问题，可通过一键配置环境变量脚本来修复代理路由。</p>
@@ -850,6 +983,72 @@ https://github.com/upstash/context7</code>
             }, 2000);
         });
     }
+
+    // 屏蔽右键和常用开发人员调试快捷键
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+            (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
+            e.preventDefault();
+        }
+    });
+
+    (function() {
+        const overlay = document.getElementById('passwordOverlay');
+        const input = document.getElementById('passwordInput');
+        const step1 = document.getElementById('passwordStep1');
+        const step2 = document.getElementById('passwordStep2');
+        if (localStorage.getItem('codex_guide_auth') !== 'true') {
+            overlay.classList.remove('hidden');
+        }
+        window.switchStep = function(step) {
+            if (step === 1) {
+                step1.classList.remove('hidden');
+                step2.classList.add('hidden');
+                setTimeout(() => input.focus(), 50);
+            } else if (step === 2) {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+            }
+        };
+
+        // 异步计算 SHA-256 哈希值
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        window.verifyPassword = async function() {
+            const val = input.value.trim().toLowerCase();
+            if (!val) return;
+            
+            const hashedVal = await sha256(val);
+            const allowedHashes = [
+                '2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848', // 128
+                '2201ba6e967dfc0b08e0ee4fbed62ee44c31fe1ab4cc89632d7c51b576109b89', // dqtx33
+                '7792ffb069a08fda8e288738759b94588d25e0db0f0fcf9d44093f5708d565f0', // dqtx
+                '57de4cf40144bdf7d00010f2f5557a7d642c2b9705309bfade167dd313e2ca93'  // codex
+            ];
+            
+            if (allowedHashes.includes(hashedVal)) {
+                localStorage.setItem('codex_guide_auth', 'true');
+                overlay.classList.add('hidden');
+            } else {
+                alert('密码错误，请重新输入或扫描二维码获取密码。');
+                input.value = '';
+                input.focus();
+            }
+        };
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyPassword();
+            }
+        });
+    })();
 </script>
 
 
