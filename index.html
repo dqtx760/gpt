@@ -291,23 +291,28 @@
                             <a href="https://plus.dqtx.cc/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">接马🐎 →</a>
                             <a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">chrome</a>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-zinc-150 dark:border-zinc-800/80 flex items-center justify-between gap-3 text-xs bg-zinc-50 dark:bg-zinc-950/40 rounded-xl p-3 border border-zinc-200 dark:border-zinc-800/50">
-                            <div class="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-                                <span>💬</span>
-                                <span class="font-mono text-brand-500 font-extrabold select-all">C:\Program Files\WindowsApps</span>
+                        <div class="mt-4 pt-3 border-t border-zinc-150 dark:border-zinc-800/80 text-xs bg-zinc-50 dark:bg-zinc-950/40 rounded-xl p-3 border border-zinc-200 dark:border-zinc-800/50 space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="shrink-0 w-8 text-[10px] font-bold text-zinc-400 select-none">路径</span>
+                                <code class="flex-1 min-w-0 truncate font-mono text-xs text-brand-500 font-extrabold select-all" title="C:\Program Files\WindowsApps">C:\Program Files\WindowsApps</code>
+                                <button onclick="copyText('C:\\Program Files\\WindowsApps', this)" class="shrink-0 px-2.5 py-1 bg-zinc-800 text-zinc-400 rounded-md text-[10px] font-bold border border-zinc-700 hover:text-white hover:border-zinc-500 transition-colors">复制</button>
                             </div>
-                            <button onclick="copyText('C:\\Program Files\\WindowsApps', this)" class="shrink-0 px-2.5 py-1 bg-zinc-800 text-zinc-400 rounded-md text-[10px] font-bold border border-zinc-700 hover:text-white hover:border-zinc-500 transition-colors">快捷方式路径</button>
+                            <div class="flex items-center gap-2">
+                                <span class="shrink-0 w-8 text-[10px] font-bold text-zinc-400 select-none">命令</span>
+                                <code class="flex-1 min-w-0 truncate font-mono text-xs text-emerald-500 font-extrabold select-all" title="shell:appsfolder">shell:appsfolder</code>
+                                <button onclick="copyText('shell:appsfolder', this)" class="shrink-0 px-2.5 py-1 bg-zinc-800 text-zinc-400 rounded-md text-[10px] font-bold border border-zinc-700 hover:text-white hover:border-zinc-500 transition-colors">复制</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
+                <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm flex flex-col">
                     <h3 class="font-bold mb-3 italic text-sm tracking-widest">API Key</h3>
-                    <div class="flex flex-wrap gap-2 mb-4">
+                    <div class="flex flex-wrap gap-2 mb-4 mt-auto">
                         <a href="https://github.com/lidge-jun/opencodex/blob/main/readme/README.zh-CN.md" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">OpenCodex</a>
                         <a href="https://ccswitch.io/zh/download" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CC Switch</a>
                         <a href="https://github.com/BenedictKing/ccx/releases/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CCX</a>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-4 my-auto">
                         <a href="https://opencode.ai/go?ref=9AYD2ZQFJG" target="_blank" class="block text-center py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg hover:opacity-90 transition-all transform hover:-translate-y-0.5">订阅OpenCode Go →</a>
                         <div class="flex items-stretch gap-3">
                             <a href="https://platform.agnes-ai.com/settings/apiKeys" target="_blank" class="flex-1 block text-center py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow-lg hover:opacity-90 transition-all transform hover:-translate-y-0.5">获取 Agnes API Key →</a>
