@@ -131,7 +131,7 @@
                     <h3 class="font-bold text-orange-500 mb-2 flex items-center gap-2 italic">科学上网（魔法）</h3>
                     <p class="text-sm text-zinc-500 mb-6 font-medium">日常打开魔法软件，开启「系统代理」即可。</p>
                     <div class="flex flex-wrap gap-3">
-                        <a href="https://haha-1366927206.cos.accelerate.myqcloud.com/tutorial/windows/clashverge/Clash.Verge_2.5.0-rc_x64-setup.exe" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-lg hover:bg-brand-700 transition-colors">下载客户端</a>
+                        <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-lg hover:bg-brand-700 transition-colors">下载客户端</a>
                         <a href="https://cokecloud.net/#/register?code=L2FOV7Yb" target="_blank" class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 text-xs font-bold rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">流量购买</a>
                     </div>
                 </div>
@@ -159,10 +159,11 @@
                 <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
             </div>
             <div class="bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
-                <div class="flex border-b border-zinc-200 dark:border-zinc-800">
-                    <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">一键安装</button>
-                    <button @click="activeTab = 'deploy'" :class="activeTab === 'deploy' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">一键自动部署</button>
-                    <button @click="activeTab = 'offline'" :class="activeTab === 'offline' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all">离线包下载</button>
+                <div class="flex border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto">
+                    <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">一键安装</button>
+                    <button @click="activeTab = 'deploy'" :class="activeTab === 'deploy' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">一键自动部署</button>
+                    <button @click="activeTab = 'offline'" :class="activeTab === 'offline' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">离线包下载</button>
+                    <button @click="activeTab = 'clandian'" :class="activeTab === 'clandian' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest transition-all shrink-0">Clandian插件</button>
                 </div>
                 <div class="p-8 italic">
                     <div x-show="activeTab === 'cmd'" class="space-y-4">
@@ -261,6 +262,33 @@
                             <p class="text-zinc-500 text-xs italic">解析工具：<a href="https://store.rg-adguard.net/" target="_blank" class="text-emerald-500 font-bold hover:underline">store.rg-adguard.net</a></p>
                         </div>
                     </div>
+                    <div x-show="activeTab === 'clandian'" class="space-y-6 not-italic" x-cloak>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2 text-xs text-brand-500 font-bold">
+                                <span class="text-base">📦</span>
+                                <span>Obsidian 扩展插件</span>
+                            </div>
+                            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-medium">
+                                这是一个 Obsidian 的插件，可以在 Obsidian 当中来使用 Codex 以及 Claude Code。
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4">
+                            <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iQgwt4ayypxg" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm shadow-lg transition-all transform hover:-translate-y-0.5">
+                                <span>下载 Clandian 插件</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+
+                        <div class="pt-6 border-t border-zinc-100 dark:border-zinc-800 text-sm space-y-3">
+                            <p class="text-emerald-500 font-bold tracking-tight underline">插件安装路径：</p>
+                            <p class="text-xs text-zinc-500 dark:text-zinc-400">解压后将插件文件夹放在 Obsidian 库的以下目录中：</p>
+                            <div class="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-2 flex items-center justify-between">
+                                <code class="px-4 text-xs font-mono text-brand-500 font-extrabold truncate max-w-xs md:max-w-md">.obsidian\plugins</code>
+                                <button onclick="copyText('.obsidian\\plugins', this)" class="px-6 py-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-xs font-bold hover:text-brand-500 transition-all shrink-0">复制路径</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -288,7 +316,7 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
-                            <a href="https://plus.dqtx.cc/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">接马🐎 →</a>
+                            <a href="https://cdx.dqtx.cc/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">接马🐎 →</a>
                             <a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank" class="flex items-center justify-center p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-xs font-bold text-center hover:border-brand-500/50 transition-colors">chrome</a>
                         </div>
                         <div class="mt-4 pt-3 border-t border-zinc-150 dark:border-zinc-800/80 text-xs bg-zinc-50 dark:bg-zinc-950/40 rounded-xl p-3 border border-zinc-200 dark:border-zinc-800/50 space-y-2">
@@ -308,6 +336,7 @@
                 <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm flex flex-col">
                     <h3 class="font-bold mb-3 italic text-sm tracking-widest">API Key</h3>
                     <div class="flex flex-wrap gap-2 mb-4 mt-auto">
+                        <a href="https://usemagpie.ai/zh/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">Magpie</a>
                         <a href="https://github.com/lidge-jun/opencodex/blob/main/readme/README.zh-CN.md" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">OpenCodex</a>
                         <a href="https://ccswitch.io/zh/download" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CC Switch</a>
                         <a href="https://github.com/BenedictKing/ccx/releases/" target="_blank" class="text-[10px] px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-500 rounded border border-brand-500/30 font-bold">CCX</a>
@@ -326,155 +355,73 @@
             </div>
 
             <!-- 配置到软件里的自定义指令 -->
-            <div x-data="{ expanded: false }" class="p-6 md:p-10 rounded-[2.5rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-2xl relative overflow-hidden group">
-                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <div x-data="{ expanded: false }" class="p-5 md:p-7 rounded-2xl md:rounded-3xl border border-zinc-200/90 dark:border-zinc-800/90 bg-white dark:bg-dark-card shadow-xl relative overflow-hidden group">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         </div>
-                        <h3 class="font-extrabold text-base italic tracking-tight underline decoration-brand-500/30">Codex全局自定义指令 (AAGENTS.md)</h3>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h3 class="font-bold text-sm md:text-base text-zinc-900 dark:text-zinc-100 tracking-tight">Codex 全局自定义指令</h3>
+                            <span class="text-[11px] font-mono font-medium text-brand-500 bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded-md">AAGENTS.md</span>
+                        </div>
                     </div>
-                    <button @click="copyText($refs.instructionText.innerText, $el)" class="shrink-0 flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-500 text-white rounded-xl text-xs font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-500/25">
-                        复制完整指令
+                    <button @click="copyText($refs.instructionText.innerText, $el)" class="shrink-0 flex items-center justify-center gap-1.5 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md shadow-brand-500/20">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
+                        <span>复制指令</span>
                     </button>
                 </div>
                 
-                <div class="relative bg-zinc-50 dark:bg-zinc-950/50 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800/50">
+                <div class="relative bg-zinc-50 dark:bg-[#0c0d0e] rounded-xl p-4 md:p-5 border border-zinc-200/80 dark:border-zinc-800/80 inset-shadow">
                     <div x-ref="instructionText" 
                          :class="expanded ? '' : 'max-h-24 overflow-hidden'" 
-                         class="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 font-mono leading-relaxed whitespace-pre-wrap transition-all duration-500 italic">
-# 全局行为准则
+                         class="text-[13px] md:text-sm text-zinc-700 dark:text-zinc-200 font-mono leading-relaxed whitespace-pre-wrap transition-all duration-300">
+## 沟通
 
-## 语言
+- 面向用户的叙述默认使用简体中文；代码、命令和技术标识保持英文。
+- 先给影响与结论，再给行动、待决策和必要证据；没有对应内容就省略。
+- 使用简洁、连贯的段落；只有确实适合并列比较或按步骤执行时才使用列表。
+- 使用具体、简单的词，避免无意义术语、套话、重复总结和未经请求的对比。
+- 技术细节只保留对理解结论、判断风险或复现结果有帮助的部分。
 
-- 使用中文回答我的问题，不要使用英文。
+## 指令优先级
 
-## 文件删除安全
+- 遵守系统、平台和安全约束。
+- 用户当前明确指令优先于 Skill、历史记忆和默认偏好。
+- 项目目录中的 `AGENTS.md` 只在该项目范围内补充或覆盖全局规则。
 
-- 禁止批量删除文件或目录。
-- 不要使用以下命令：
-  - `del /s`
-  - `rd /s`
-  - `rmdir /s`
-  - `Remove-Item -Recurse`
-  - `rm -rf`
-- 需要删除文件时，只能一次删除一个明确路径的文件。
-- 正确示例：
+## 执行方式
 
-```powershell
-Remove-Item "C:\path\to\file.txt"
-```
+- 用户表示要开始新工作或修复现有问题时，持续推进，直到用户的目标完成，在目标方向上自主推进。
+- 向用户提问之前，先完成上下文里已经授权、并且能把下一步变成可审查结果的工作。用户批准的应该是具体、可检查的结果。
+- 用户建议不适合目标时直接说，不要迎合。
+- 不要因为假想风险，主动加警告、免责声明、审批流程或安全/合规清单。
 
-- 如果需要批量删除文件，应停止操作，并向用户请求，让用户手动删除。
+## 测试与验证
 
-## 编码前先想清楚
+- 不要为可逆、影响小、只是复述实现的改动写测试。
+- 跑与本次改动相称的测试，并完成必要检查。这些通过之后，只有出现新改动、新失败或尚未解决的疑点时，才扩大或重复测试；否则继续把任务做完。
+- 收尾删掉本次产生、之后用不上的临时文件。
 
-不要假设，不要掩饰不确定性，要主动说清楚取舍。
+## 工具与并行
 
-把自己当作按返工收费的承包商：错误假设造成的返工成本由自己承担；不必要的问题成本则由用户承担。先尽量调查，只有真正阻塞时才提问。
+- 搜索文件或文本优先使用 `rg`、`rg --files`；独立的读取和查询尽量批量执行。
+- 网页控制台无 CLI/API 时用已登录的Chrome浏览器；飞书优先 `lark-cli`。
+- 只有存在真正独立的工作流，且委派能节省时间或提升质量时才使用子 Agent。
+- 共享状态、连续决策和简单任务由当前 Agent 直接完成；委派任务必须有明确输入、输出和完成判据，最终结论由主 Agent 汇总并验证。
 
-- 实现前先明确假设。
-- 如果需求有多种理解，不要静默选择，要说明可能的解释。
-- 如果存在更简单的方案，要主动提出。
-- 如果发现需求不清楚，应停下来说明困惑点，并询问用户。
+## 规则来源
 
-### 先调查，再提问
-
-- 先阅读相关代码、测试、配置和依赖清单。
-- 一分钟内可以通过搜索发现的信息属于自己的研究，不要转嫁成问题。
-- 不要询问仓库里已经存在的测试框架、语言版本、Lint 规则、错误处理约定、目录结构或抽象方式。
-
-### 先输出，再暂停
-
-开始实现前，按以下顺序输出：
-
-- **目标。** 用一段话复述需求，并写明自己会遵守的验收标准；如果复述错了，应在最便宜的阶段暴露。
-- **阻塞问题（0—3 个）。** 只有答案错误会导致返工或丢弃已完成工作时才提问。每个问题都给出推荐默认值，让用户可以直接回复“按建议执行”。没有真正阻塞时，明确写“无（0 个）”。
-- **假设。** 必须编号、具体、可证伪，而不是“代码应易维护”这类空话。例如“输入不超过 1 万行且可以放入内存”就是合格假设。按任务涉及范围覆盖：
-  - 数据：形状、规模、可信度、编码，以及畸形输入的表现；
-  - 失败：超时、部分写入、下游返回 500 时，是重试、直接报错还是降级；
-  - 边界：调用方、公开 API 与内部实现、向后兼容义务；
-  - 状态：并发、幂等、事务性和顺序保证；
-  - 环境：运行时版本、部署位置和允许访问的范围；
-  - 范围：明确不做什么，以及哪些事项保留为 TODO；
-  - 测试：会编写和验证什么，以及暂不覆盖什么。
-- **计划。** 列出要新建或修改的文件、关键函数/类型签名和工作顺序。若在多个方案中做了选择，写出被拒绝的替代方案及一句话原因。
-
-完成上述输出后等待批准，不要直接开始实现。
-
-## 简单优先
-
-用能解决问题的最小代码，不做猜测式扩展。
-
-- 不添加用户没有要求的功能。
-- 不为一次性代码创建抽象。
-- 不加入未经要求的灵活性、配置项或扩展点。
-- 无需为不可能发生的场景写复杂错误处理。
-- 如果写了 200 行但 50 行就能解决，应主动简化。
-
-自检问题：资深工程师会不会觉得这太复杂？如果会，就简化。
-
-## 按影响范围控制流程深度
-
-流程要与改动的爆炸半径匹配：
-
-- 拼写修复、重命名，或少于约 20 行且只有一种明显正确写法的改动：直接完成并验证。
-- 新模块、数据结构（Schema）变更，以及涉及认证、金钱、迁移或删除的改动：完整执行调查、假设、计划和批准流程，并比平时更严格地检查自己的假设。
-
-## 外科手术式修改
-
-只改必须改的地方，只清理自己造成的问题。
-
-- 不顺手“优化”相邻代码、注释或格式。
-- 不重构没有坏掉的代码。
-- 匹配项目既有风格，即使自己会用不同写法。
-- 发现无关的死代码时，只说明，不主动删除。
-- 如果自己的改动造成了未使用的导入、变量或函数，要清理掉。
-- 不删除改动前就已经存在的死代码，除非用户明确要求。
-
-判断标准：每一行改动都应能直接追溯到用户的请求。
-
-## 目标驱动执行
-
-把任务转成可以验证的目标，并循环直到验证完成。
-
-- “添加校验”应转成：为非法输入写测试，然后让测试通过。
-- “修复 bug”应转成：写一个能复现问题的测试，然后让测试通过。
-- “重构某模块”应转成：重构前后都确认测试通过。
-
-对于多步骤任务，先给出简短计划：
-
-```text
-1. [步骤] -> 验证：[检查方式]
-2. [步骤] -> 验证：[检查方式]
-3. [步骤] -> 验证：[检查方式]
-```
-
-好的成功标准应允许独立推进；模糊目标，例如“让它能用”，需要先澄清。
-
-## 获批后执行
-
-- 只按已批准的计划实现。
-- 如果实现过程中发现假设错误，或计划与实际代码不一致，应立即停下并说明；不要悄悄改用另一种设计，也不要继续推进自己已经认为不可靠的方案。
-
-## 回应态度与独立思考
-
-- 不要默认认同我的观点，也不要为了让我满意而附和我。
-- 回答前，先检查我的问题里是否存在错误前提、逻辑跳跃、信息缺失或未经证实的判断。如果有，请直接指出，不要沿着错误前提继续推导。
-- 明确区分：已确认的事实、合理推测、个人观点和暂时无法验证的信息。涉及事实、数字、人物、日期、引用和案例时，尽可能核对来源；无法确认就直接说明，不要编造。
-- 当你不同意我的判断时，请清楚说明原因，并给出反例、风险或更合理的解释。不要只给结论，要说明推理过程。
-- 语气可以直接，但不要刻意尖刻、说教或卖弄。比起让我感觉良好，更重要的是帮助我发现自己忽略的问题。
-
-## 部署启动“独立审核线程”
-当我说‘deploy’时，完成测试、提交并推送此任务的更改。然后使用 gpt-5.6-luna 创建一个新的 Codex 项目任务，启用最大推理来审查并合并 PR，监控 exact-main CI 和自动部署，并验证生产环境。按照该任务完成并在此处报告结果。防止递归移交。
-遇到需要批量执行的子任务，自己spawn独立的Luna Max对话线程去跑，跑完把结果汇总回来。
+- 全局规则维护在当前生效的 canonical `AGENTS.md`；`CLAUDE.md` 只作兼容入口，不复制规则正文。
+- 项目事实、生产状态、历史决策和对外契约以项目级 `AGENTS.md` 及其指定的脚本、探针、决策记录和合同文件为准。
 </div>
 <!-- 渐变蒙层 -->
-<div x-show="!expanded" class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-zinc-50 dark:from-zinc-950/80 to-transparent pointer-events-none rounded-b-2xl"></div>
-</div><button @click="expanded = !expanded" class="mt-6 mx-auto flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400 hover:text-brand-500 transition-all">
-                <span x-text="expanded ? '折叠内容' : '查看完整指令内容'"></span>
-                <svg :class="expanded ? 'rotate-180' : ''" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
-            </button>
+                    <div x-show="!expanded" class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-zinc-50 dark:from-[#0c0d0e] to-transparent pointer-events-none rounded-b-xl"></div>
+                </div>
+                <button @click="expanded = !expanded" class="mt-3.5 mx-auto flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-zinc-400 hover:text-brand-500 transition-all">
+                    <span x-text="expanded ? '折叠内容' : '查看完整指令内容'"></span>
+                    <svg :class="expanded ? 'rotate-180' : ''" class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
         </div>
     </section>
 
@@ -582,14 +529,14 @@ Remove-Item "C:\path\to\file.txt"
                 <div class="text-[10px] font-bold text-brand-500 uppercase flex items-center gap-1">开始阅读 <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
             </a>
             
-            <a href="https://x.com/huoshan007/status/2081307788479782919" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group">
+            <a href="https://xodnytdcaw.feishu.cn/docx/MBOMdhqxIocokKxgLqUcRRQenCd?from=from_copylink" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                         <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                     </div>
-                    <h3 class="font-bold italic tracking-widest group-hover:text-brand-500 transition-colors">Codex 保姆级视频教程！</h3>
+                    <h3 class="font-bold italic tracking-widest group-hover:text-brand-500 transition-colors">Codex半年更新&进阶</h3>
                 </div>
-                <p class="text-xs text-zinc-500 mb-4 flex-1">从零基础上手到高阶使用的实战视频讲解，轻松搞定日常操作。</p>
+                <p class="text-xs text-zinc-500 mb-4 flex-1">技术爬爬虾视频教程，个人学习笔记，仅作参考</p>
                 <div class="text-[10px] font-bold text-brand-500 uppercase flex items-center gap-1">观看教程 <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
             </a>
             <a href="https://mp.weixin.qq.com/s/F3HS6BUfTDP0h3rFipoJhA" target="_blank" class="flex flex-col p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm hover:border-brand-500 hover:shadow-lg transition-all group relative overflow-hidden">
