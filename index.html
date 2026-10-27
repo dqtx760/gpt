@@ -164,6 +164,7 @@
                     <button @click="activeTab = 'cmd'" :class="activeTab === 'cmd' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">一键安装</button>
                     <button @click="activeTab = 'deploy'" :class="activeTab === 'deploy' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">一键自动部署</button>
                     <button @click="activeTab = 'offline'" :class="activeTab === 'offline' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">离线包下载</button>
+                    <button @click="activeTab = 'mac'" :class="activeTab === 'mac' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest uppercase transition-all shrink-0">Mac专属</button>
                     <button @click="activeTab = 'clandian'" :class="activeTab === 'clandian' ? 'bg-zinc-50 dark:bg-zinc-900/50 text-brand-500 border-b-2 border-brand-500 font-bold' : 'text-zinc-400'" class="px-8 py-4 text-xs tracking-widest transition-all shrink-0">Clandian插件</button>
                 </div>
                 <div class="p-8 italic">
@@ -269,6 +270,64 @@
                             <p class="text-zinc-500 text-xs italic">解析工具：<a href="https://store.rg-adguard.net/" target="_blank" class="text-emerald-500 font-bold hover:underline">store.rg-adguard.net</a></p>
                         </div>
                     </div>
+                    <div x-show="activeTab === 'mac'" class="space-y-3.5 not-italic" x-cloak>
+                        <!-- 芯片判断指引 -->
+                        <div class="p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs space-y-2">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-zinc-700 dark:text-zinc-200">远程控机终端输入：</span>
+                                    <code class="font-mono text-brand-500 font-bold bg-zinc-100 dark:bg-zinc-950 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-800">uname -m</code>
+                                    <button onclick="copyText('uname -m', this)" class="px-2 py-0.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white rounded text-[10px] font-bold transition-all">复制</button>
+                                </div>
+                                <div class="text-zinc-500 dark:text-zinc-400">
+                                    或左上角苹果图标 → 关于本机
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-zinc-600 dark:text-zinc-400 font-mono">
+                                <span>◦ <strong class="text-orange-500 font-bold">arm64</strong> → M芯片，用M直链</span>
+                                <span>◦ <strong class="text-blue-500 font-bold">x86_64</strong> → Intel，用Intel x64直链</span>
+                            </div>
+                        </div>
+
+                        <!-- 两个直链下载卡片 -->
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <!-- M芯片 Mac -->
+                            <div class="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 transition-all flex flex-col justify-between">
+                                <div class="mb-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h4 class="font-bold text-xs text-zinc-800 dark:text-zinc-200">M芯片Mac（Apple Silicon）Codex直链</h4>
+                                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-500 font-bold">arm64</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-950 p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 text-[11px]">
+                                        <code class="truncate text-zinc-500 dark:text-zinc-400 font-mono mr-2" title="https://persistent.oaistatic.com/codex-app-prod/Codex.dmg">https://persistent.oaistatic.com/codex-app-prod/Codex.dmg</code>
+                                        <button onclick="copyText('https://persistent.oaistatic.com/codex-app-prod/Codex.dmg', this)" class="text-zinc-400 hover:text-brand-500 shrink-0 font-bold">复制</button>
+                                    </div>
+                                </div>
+                                <a href="https://persistent.oaistatic.com/codex-app-prod/Codex.dmg" target="_blank" class="w-full flex items-center justify-center gap-1.5 py-2.5 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 rounded-xl text-xs font-bold transition-all shadow-sm">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                    <span>下载 Codex.dmg</span>
+                                </a>
+                            </div>
+
+                            <!-- Intel Mac -->
+                            <div class="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 transition-all flex flex-col justify-between">
+                                <div class="mb-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h4 class="font-bold text-xs text-zinc-800 dark:text-zinc-200">Intel Mac直链</h4>
+                                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-500 font-bold">x86_64</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-950 p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 text-[11px]">
+                                        <code class="truncate text-zinc-500 dark:text-zinc-400 font-mono mr-2" title="https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg">https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg</code>
+                                        <button onclick="copyText('https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg', this)" class="text-zinc-400 hover:text-brand-500 shrink-0 font-bold">复制</button>
+                                    </div>
+                                </div>
+                                <a href="https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg" target="_blank" class="w-full flex items-center justify-center gap-1.5 py-2.5 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 rounded-xl text-xs font-bold transition-all shadow-sm">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                    <span>下载 Codex-latest-x64.dmg</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div x-show="activeTab === 'clandian'" class="space-y-6 not-italic" x-cloak>
                         <div class="space-y-3">
                             <div class="flex items-center gap-2 text-xs text-brand-500 font-bold">
@@ -281,6 +340,14 @@
                         </div>
 
                         <div class="flex flex-wrap items-center gap-4">
+                            <a href="https://obsidian.md/zh/download" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 hover:border-brand-500 rounded-xl font-bold text-sm shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5">
+                                <span>Obsidian 安装包</span>
+                                <svg class="w-3.5 h-3.5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                            <a href="https://github.com/dqtx760/obsidian-vault-template" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 hover:border-brand-500 rounded-xl font-bold text-sm shadow-sm hover:shadow transition-all transform hover:-translate-y-0.5">
+                                <span>Obsidian 的模板</span>
+                                <svg class="w-3.5 h-3.5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
                             <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iQgwt4ayypxg" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm shadow-lg transition-all transform hover:-translate-y-0.5">
                                 <span>下载 Clandian 插件</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -429,12 +496,31 @@
 
     <!-- 4. 报错修复 -->
     <section id="fixes" class="mb-16" data-aos="fade-up">
-        <div class="flex items-center gap-4 mb-8">
+        <div class="flex items-center gap-4 mb-6">
             <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 04</span>
             <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">报错修复</h2>
             <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
         </div>
 
+        <!-- 《Codex 常见异常收集》飞书文档入口（紧凑版） -->
+        <a href="https://xodnytdcaw.feishu.cn/docx/Tlhnd4Y1ToUPeDx7RPucXUa2n8e?from=from_copylink" target="_blank" class="flex items-center justify-between gap-3 p-3.5 mb-5 rounded-2xl bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transition-all group">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover:text-brand-500 transition-colors">《Codex 常见异常收集》</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-500 font-bold border border-brand-500/30">持续更新 · 飞书</span>
+                    </div>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">疑难报错、排障流程与根因记录全集</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs font-bold text-brand-500 shrink-0">
+                <span>查阅文档</span>
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+        </a>
         <div class="grid md:grid-cols-3 gap-6">
             <!-- 启动崩溃 -->
             <div class="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card shadow-sm">
@@ -613,11 +699,31 @@ supports_websockets = false</textarea>
 
             <!-- 7. Skill 推荐 -->
     <section id="skills" class="mb-16" data-aos="fade-up">
-        <div class="flex items-center gap-4 mb-8 mt-8">
+        <div class="flex items-center gap-4 mb-6 mt-8">
             <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 07</span>
             <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">Skill 推荐</h2>
             <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
         </div>
+
+        <!-- 《自用精选 Skill 知识库》飞书文档入口（紧凑版） -->
+        <a href="https://xodnytdcaw.feishu.cn/docx/G0rFdTLLboSWJpxd1zCcEDtOnXz" target="_blank" class="flex items-center justify-between gap-3 p-3.5 mb-5 rounded-2xl bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 hover:shadow-md transition-all group">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100 group-hover:text-brand-500 transition-colors">自用精选 skill / CMCP / CLI工具集</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-500 font-bold border border-brand-500/30">持续更新 · 飞书</span>
+                    </div>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">分类汇总自用精选 Skill、CMCP 与 CLI 工具及配置说明</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs font-bold text-brand-500 shrink-0">
+                <span>查阅文档</span>
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+        </a>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
             <!-- yao-meta-skill -->
             <div class="flex flex-col h-full bg-white dark:bg-dark-card border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 shadow-sm hover:border-brand-500 transition-all group">
@@ -1147,49 +1253,5 @@ https://github.com/upstash/context7</code>
         });
     })();
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
