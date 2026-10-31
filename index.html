@@ -137,7 +137,7 @@
                 <span class="font-bold text-lg tracking-tight italic">Codex <span class="text-brand-500 font-sans">Guide</span></span>
             </div>
             
-            <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-500">
+            <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-zinc-500">
                 <a href="#env" class="hover:text-brand-500 transition-colors">环境</a>
                 <a href="#install" class="hover:text-brand-500 transition-colors">安装</a>
                 <a href="#login" class="hover:text-brand-500 transition-colors font-bold">登录</a>
@@ -147,7 +147,8 @@
                 <a href="#skills" class="hover:text-brand-500 transition-colors">Skill</a>
                 <a href="#cli-tools" class="hover:text-brand-500 transition-colors">CLI</a>
                 <a href="#mcp-tools" class="hover:text-brand-500 transition-colors">MCP</a>
-                <a href="#tools" class="hover:text-brand-500 transition-colors">其他</a>
+                <a href="#tools" class="hover:text-brand-500 transition-colors">工具箱</a>
+                <a href="https://www.16688.com.cn/shop/S789036" target="_blank" class="hover:text-brand-500 transition-colors">GPT代充</a>
             </div>
 
             <button @click="darkMode = !darkMode" class="p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
@@ -1108,96 +1109,205 @@ https://github.com/upstash/context7</code>
             </div>
         </div>
     </section>
-    <!-- 10. 辅助工具 -->
-    <section id="tools" class="mb-4" data-aos="fade-up">
-        <div class="flex items-center gap-4 mb-8">
+    <!-- 10. 工具箱 -->
+    <section id="tools" class="mb-4" data-aos="fade-up" x-data="{ toolCategory: 'efficiency' }">
+        <div class="flex items-center gap-4 mb-6">
             <span class="text-brand-500 font-mono text-sm uppercase tracking-widest">Phase 10</span>
-            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">其他工具推荐</h2>
+            <h2 class="text-2xl font-bold italic underline decoration-brand-500/30">工具箱</h2>
             <div class="h-px flex-1 bg-zinc-200 dark:bg-zinc-800"></div>
         </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <!-- 软件与下载工具 -->
-            <a href="https://www.internetdownloadmanager.com/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+
+        <!-- 分组切换 Tab -->
+        <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
+            <button @click="toolCategory = 'efficiency'"
+                    :class="toolCategory === 'efficiency' ? 'bg-brand-500 text-white font-bold border border-transparent shadow-md shadow-brand-500/20' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50'"
+                    class="px-4 py-2 rounded-xl text-xs transition-all shrink-0">
+                效率工具
+            </button>
+            <button @click="toolCategory = 'extension'"
+                    :class="toolCategory === 'extension' ? 'bg-brand-500 text-white font-bold border border-transparent shadow-md shadow-brand-500/20' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50'"
+                    class="px-4 py-2 rounded-xl text-xs transition-all shrink-0">
+                浏览器插件
+            </button>
+            <button @click="toolCategory = 'ai'"
+                    :class="toolCategory === 'ai' ? 'bg-brand-500 text-white font-bold border border-transparent shadow-md shadow-brand-500/20' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50'"
+                    class="px-4 py-2 rounded-xl text-xs transition-all shrink-0">
+                AI 相关
+            </button>
+            <button @click="toolCategory = 'online'"
+                    :class="toolCategory === 'online' ? 'bg-brand-500 text-white font-bold border border-transparent shadow-md shadow-brand-500/20' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50'"
+                    class="px-4 py-2 rounded-xl text-xs transition-all shrink-0">
+                在线工具
+            </button>
+            <button @click="toolCategory = 'customer'"
+                    :class="toolCategory === 'customer' ? 'bg-brand-500 text-white font-bold border border-transparent shadow-md shadow-brand-500/20' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50'"
+                    class="px-4 py-2 rounded-xl text-xs transition-all shrink-0">
+                客户导航
+            </button>
+        </div>
+
+        <!-- 按最多分类预留五行（手机）或三行（电脑），切换时保持页脚位置稳定。 -->
+        <div x-cloak class="grid grid-cols-2 lg:grid-cols-4 gap-4 content-start auto-rows-[minmax(6rem,max-content)] min-h-[34rem] lg:min-h-80">
+            <!-- 效率工具 (电脑端小工具) -->
+            <a href="https://www.internetdownloadmanager.com/" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">IDM官网</h4>
                 <p class="text-[10px] text-zinc-400">IDM官方网站</p>
             </a>
-            <a href="https://mirror2.internetdownloadmanager.com/download/idman643build7.exe" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://mirror2.internetdownloadmanager.com/download/idman643build7.exe" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">IDM鸡活</h4>
                 <p class="text-[10px] text-zinc-400">IDM鸡活工具</p>
             </a>
-            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iLHZK371f3kf" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iLHZK371f3kf" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">HiBit卸载</h4>
                 <p class="text-[10px] text-zinc-400">HiBit无残留卸载</p>
             </a>
-            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iNZOo320ywyb" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iNZOo320ywyb" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Win11菜单</h4>
                 <p class="text-[10px] text-zinc-400">win11右键菜单优化</p>
             </a>
-            <a href="https://www.codebuddy.cn/events/invite?inviteCode=uhc35nnbtssnk" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+
+            <a href="https://lz.qaiu.top/parser?url=https://wwzq.lanzouq.com/iG5A6371g9cj" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">WinRAR</h4>
+                <p class="text-[10px] text-zinc-400">文件压缩与解压工具</p>
+            </a>
+            <a href="https://github.com/QL-Win/QuickLook/releases" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">QuickLook</h4>
+                <p class="text-[10px] text-zinc-400">文件快速预览工具</p>
+            </a>
+            <a href="https://www.codebuddy.cn/events/invite?inviteCode=uhc35nnbtssnk" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">WorkBuddy</h4>
                 <p class="text-[10px] text-zinc-400">国产Agent软件</p>
             </a>
-            <a href="https://github.akams.cn/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
-                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">github加速</h4>
-                <p class="text-[10px] text-zinc-400">稳定解决海外下载问题</p>
+
+            <a href="https://github.com/LBEILC/Pane/releases" target="_blank" x-show="['efficiency'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Pane</h4>
+                <p class="text-[10px] text-zinc-400">文件搜索神器</p>
             </a>
-            <a href="https://adguard.com/zh_cn/adguard-windows/overview.html" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+
+            <!-- 浏览器插件 -->
+            <a href="https://adguard.com/zh_cn/adguard-windows/overview.html" target="_blank" x-show="['extension'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">AdGuard插件</h4>
                 <p class="text-[10px] text-zinc-400">AdGuard插件</p>
             </a>
-            <a href="https://chromewebstore.google.com/detail/shoteasy-light-and-easy-t/nmppkehciohcgcehlnifgeokgioidknh" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://chromewebstore.google.com/detail/shoteasy-light-and-easy-t/nmppkehciohcgcehlnifgeokgioidknh" target="_blank" x-show="['extension'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic ">ShotEasy截图</h4>
                 <p class="text-[10px] text-zinc-400">ShotEasy截图插件</p>
             </a>
 
-            <!-- 在线服务与网站 -->
-            <a href="https://www.micuapi.ai/register?aff=uTGd" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://github.com/dqtx760/StarTab" target="_blank" x-show="['extension'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">StarTab标签页</h4>
+                <p class="text-[10px] text-zinc-400">浏览器标签页插件</p>
+            </a>
+            <a href="https://obsidian.md/zh/clipper#more-browsers" target="_blank" x-show="['extension'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Web Clipper</h4>
+                <p class="text-[10px] text-zinc-400">Obsidian 网页剪藏插件</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/flowmouse-mouse-gestures/fnldhkfidchnjiokpoemdhoejmaojkgp" target="_blank" x-show="['extension'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">FlowMouse</h4>
+                <p class="text-[10px] text-zinc-400">浏览器鼠标手势插件</p>
+            </a>
+
+            <!-- AI 相关 -->
+            <a href="https://www.micuapi.ai/register?aff=uTGd" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">米醋 API</h4>
                 <p class="text-[10px] text-zinc-400">米醋API中转站</p>
             </a>
-            <a href="https://apimart.ai/register?aff=QVui" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://apimart.ai/register?aff=QVui" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ApiMart</h4>
                 <p class="text-[10px] text-zinc-400">ApiMart中转站</p>
             </a>
-            <a href="https://fish.audio/?aff=X7QT3YAX3N4Q4" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://fish.audio/?aff=X7QT3YAX3N4Q4" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Fish Audio</h4>
                 <p class="text-[10px] text-zinc-400">AI 语音与声音克隆</p>
             </a>
-            <a href="https://arena.ai/leaderboard/code/webdev" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://arena.ai/leaderboard/code/webdev" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">LLM 测评榜单</h4>
                 <p class="text-[10px] text-zinc-400">大模型投票测评榜单</p>
             </a>
-            <a href="https://ip.net.coffee/gpt/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://ip.net.coffee/gpt/" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT网络监测</h4>
                 <p class="text-[10px] text-zinc-400">ChatGPT 网络环境监测</p>
             </a>
-            <a href="https://checkcc.org/" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://checkcc.org/" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Claude网络检测</h4>
                 <p class="text-[10px] text-zinc-400">Claude网络环境检测</p>
             </a>
-            <a href="https://account.apple.com/account" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+
+            <!-- 在线工具 -->
+            <a href="https://github.akams.cn/" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">github加速</h4>
+                <p class="text-[10px] text-zinc-400">稳定解决海外下载问题</p>
+            </a>
+            <a href="https://account.apple.com/account" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">苹果账号</h4>
                 <p class="text-[10px] text-zinc-400">Apple ID注册地址</p>
             </a>
-            <a href="https://www.meiguodizhi.com/usa-address/montana" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://mockaddress.com/" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">美国地址</h4>
                 <p class="text-[10px] text-zinc-400">蒙大拿州免税(订阅≤20🔪)</p>
             </a>
-            <a href="https://appstoreprice.org/zh/apps/6448311069" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
-                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">iOS 订阅价格</h4>
+            <a href="https://appstoreprice.org/zh/apps/6448311069" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">AppStore订阅监测</h4>
                 <p class="text-[10px] text-zinc-400">苹果App Store订阅监测</p>
             </a>
-            <a href="https://priceradar.store/zh/app/0a4e8225-2687-46fd-8533-103e44c81b0a" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
-                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">安卓 订阅价格</h4>
+            <a href="https://priceradar.store/zh/app/0a4e8225-2687-46fd-8533-103e44c81b0a" target="_blank" x-show="['ai'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">Google Play订阅监测</h4>
                 <p class="text-[10px] text-zinc-400">Google Play订阅监测</p>
             </a>
-            <a href="https://www.amz123.com/tools-hlhs" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://www.amz123.com/tools-hlhs" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">汇率换算</h4>
                 <p class="text-[10px] text-zinc-400">汇率换算器</p>
             </a>
-            <a href="https://key.dqtx.cc" target="_blank" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+            <a href="https://key.dqtx.cc" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
                 <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic uppercase">密钥生成</h4>
                 <p class="text-[10px] text-zinc-400">安全访问秘匙一键生成</p>
+            </a>
+
+            <a href="https://www.speedtest.net/zh-Hans" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">speedtest</h4>
+                <p class="text-[10px] text-zinc-400">网络测速</p>
+            </a>
+            <a href="https://ip.dqtx.cc/" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">IP查询</h4>
+                <p class="text-[10px] text-zinc-400">查询 IP 信息</p>
+            </a>
+            <a href="https://jsq.dqtx.cc/" target="_blank" x-show="['online'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">在线计算器</h4>
+                <p class="text-[10px] text-zinc-400">在线计算工具</p>
+            </a>
+
+            <!-- 客户导航 -->
+            <a href="https://nb.fnynb.com/#/dashboard/plan" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">续费魔法</h4>
+                <p class="text-[10px] text-zinc-400">网络服务套餐与续费</p>
+            </a>
+            <a href="https://www.16688.com.cn/shop/S789036" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT会员开通/续费</h4>
+                <p class="text-[10px] text-zinc-400">ChatGPT 会员开通与续费入口</p>
+            </a>
+            <a href="https://xodnytdcaw.feishu.cn/docx/MBOMdhqxIocokKxgLqUcRRQenCd" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT上手指南</h4>
+                <p class="text-[10px] text-zinc-400">入门与进阶使用教程</p>
+            </a>
+            <a href="https://xodnytdcaw.feishu.cn/docx/G0rFdTLLboSWJpxd1zCcEDtOnXz" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT工具链清单</h4>
+                <p class="text-[10px] text-zinc-400">Skill、MCP 与 CLI 工具清单</p>
+            </a>
+            <a href="https://xodnytdcaw.feishu.cn/docx/Tlhnd4Y1ToUPeDx7RPucXUa2n8e?from=from_copylink" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT常见异常处理办法</h4>
+                <p class="text-[10px] text-zinc-400">常见报错与处理方法</p>
+            </a>
+            <a href="https://lz.qaiu.top/parser?url=https://wwbxq.lanzouq.com/iz5JY4d42ape" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT重连5/5修复工具</h4>
+                <p class="text-[10px] text-zinc-400">重连 5/5 修复工具下载</p>
+            </a>
+            <a href="https://gpt.dqtx.cc/" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">ChatGPT使用指南</h4>
+                <p class="text-[10px] text-zinc-400">Codex 安装与使用全指南</p>
+            </a>
+            <a href="https://blog.dqtx.cc/" target="_blank" x-show="['customer'].includes(toolCategory)" class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark-card hover:border-brand-500 transition-all group">
+                <h4 class="font-bold text-xs mb-1 group-hover:text-brand-500 italic">访问大强老师博客</h4>
+                <p class="text-[10px] text-zinc-400">大强同学的博客</p>
             </a>
         </div>
     </section>
